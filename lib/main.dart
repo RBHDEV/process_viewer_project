@@ -297,7 +297,7 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> {
                         child: SingleChildScrollView(
                           child: DataTable(
                             columnSpacing: 40,
-                            headingRowColor: WidgetStateProperty.all(
+                            headingRowColor: MaterialStateProperty.all(
                               Colors.blue.shade50,
                             ),
                             columns: [
