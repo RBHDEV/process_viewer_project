@@ -8,7 +8,7 @@ void main() {
 }
 
 class ProcessViewerApp extends StatelessWidget {
-  const ProcessViewerApp({Key? key}) : super(key: key);
+  const ProcessViewerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class ProcessViewerApp extends StatelessWidget {
 }
 
 class ProcessViewerHome extends StatefulWidget {
-  const ProcessViewerHome({Key? key}) : super(key: key);
+  const ProcessViewerHome({super.key});
 
   @override
   State<ProcessViewerHome> createState() => _ProcessViewerHomeState();
@@ -376,7 +376,7 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> with SingleTicker
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: _getStateColor(process.state).withOpacity(0.2),
+                  color: _getStateColor(process.state).withValues(alpha:  0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -493,13 +493,13 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> with SingleTicker
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: color.withOpacity(0.3)),
+        side: BorderSide(color: color.withValues(alpha:  0.3)),
       ),
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [color.withOpacity(0.1), color.withOpacity(0.05)],
+            colors: [color.withValues(alpha:  0.1), color.withValues(alpha:  0.05)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -513,7 +513,7 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> with SingleTicker
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.2),
+                    color: color.withValues(alpha:  0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(icon, color: color, size: 20),
@@ -643,7 +643,7 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> with SingleTicker
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surfaceVariant,
+                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(Icons.filter_list),
@@ -686,7 +686,7 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> with SingleTicker
                         leading: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: _getStateColor(process.state).withOpacity(0.2),
+                            color: _getStateColor(process.state).withValues(alpha:  0.2),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(
@@ -775,20 +775,20 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> with SingleTicker
             child: SingleChildScrollView(
               child: DataTable(
                 columnSpacing: 36,
-                dataRowHeight: 60,
+                dataRowMinHeight: 60,
                 headingRowHeight: 56,
-                headingRowColor: MaterialStateProperty.all(
-                  Theme.of(context).colorScheme.surfaceVariant,
+                headingRowColor: WidgetStateProperty.all(
+                  Theme.of(context).colorScheme.surfaceContainerHigh,
                 ),
                 columns: [
                   DataColumn(
                     label: const Text('Name', style: TextStyle(fontWeight: FontWeight.bold)),
-                    onSort: (_, __) => _sortBy('name'),
+                    onSort: (_, _) => _sortBy('name'),
                   ),
                   DataColumn(
                     numeric: true,
                     label: const Text('PID', style: TextStyle(fontWeight: FontWeight.bold)),
-                    onSort: (_, __) => _sortBy('pid'),
+                    onSort: (_, _) => _sortBy('pid'),
                   ),
                   DataColumn(
                     label: const Text('User', style: TextStyle(fontWeight: FontWeight.bold)),
@@ -796,16 +796,16 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> with SingleTicker
                   DataColumn(
                     numeric: true,
                     label: const Text('Memory (MB)', style: TextStyle(fontWeight: FontWeight.bold)),
-                    onSort: (_, __) => _sortBy('memory'),
+                    onSort: (_, _) => _sortBy('memory'),
                   ),
                   DataColumn(
                     numeric: true,
                     label: const Text('CPU %', style: TextStyle(fontWeight: FontWeight.bold)),
-                    onSort: (_, __) => _sortBy('cpu'),
+                    onSort: (_, _) => _sortBy('cpu'),
                   ),
                   DataColumn(
                     label: const Text('State', style: TextStyle(fontWeight: FontWeight.bold)),
-                    onSort: (_, __) => _sortBy('state'),
+                    onSort: (_, _) => _sortBy('state'),
                   ),
                   const DataColumn(
                     label: Text('Actions', style: TextStyle(fontWeight: FontWeight.bold)),
@@ -828,7 +828,7 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> with SingleTicker
                       ),
                       DataCell(Text(process.pid)),
                       DataCell(Text(process.sessionName)),
-                      DataCell(Text('${memMB.toStringAsFixed(1)}')),
+                      DataCell(Text(memMB.toStringAsFixed(1))),
                       DataCell(Text('${process.cpuUsage.toStringAsFixed(1)}%')),
                       DataCell(
                         Container(

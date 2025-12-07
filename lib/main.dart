@@ -1,13 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'dart:convert';
 
 void main() {
   runApp(const ProcessViewerApp());
 }
 
 class ProcessViewerApp extends StatelessWidget {
-  const ProcessViewerApp({Key? key}) : super(key: key);
+  const ProcessViewerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class ProcessViewerApp extends StatelessWidget {
 }
 
 class ProcessViewerHome extends StatefulWidget {
-  const ProcessViewerHome({Key? key}) : super(key: key);
+  const ProcessViewerHome({super.key});
 
   @override
   State<ProcessViewerHome> createState() => _ProcessViewerHomeState();
@@ -298,19 +297,19 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> {
                         child: SingleChildScrollView(
                           child: DataTable(
                             columnSpacing: 40,
-                            headingRowColor: MaterialStateProperty.all(
+                            headingRowColor: WidgetStateProperty.all(
                               Colors.blue.shade50,
                             ),
                             columns: [
                               DataColumn(
                                 label: const Text('Process Name',
                                     style: TextStyle(fontWeight: FontWeight.bold)),
-                                onSort: (_, __) => _sortBy('name'),
+                                onSort: (_, _) => _sortBy('name'),
                               ),
                               DataColumn(
                                 label: const Text('PID',
                                     style: TextStyle(fontWeight: FontWeight.bold)),
-                                onSort: (_, __) => _sortBy('pid'),
+                                onSort: (_, _) => _sortBy('pid'),
                               ),
                               DataColumn(
                                 label: const Text('Session Name',
@@ -319,12 +318,12 @@ class _ProcessViewerHomeState extends State<ProcessViewerHome> {
                               DataColumn(
                                 label: const Text('Memory Usage',
                                     style: TextStyle(fontWeight: FontWeight.bold)),
-                                onSort: (_, __) => _sortBy('memory'),
+                                onSort: (_, _) => _sortBy('memory'),
                               ),
                               DataColumn(
                                 label: const Text('State',
                                     style: TextStyle(fontWeight: FontWeight.bold)),
-                                onSort: (_, __) => _sortBy('state'),
+                                onSort: (_, _) => _sortBy('state'),
                               ),
                             ],
                             rows: displayProcesses.map((process) {
